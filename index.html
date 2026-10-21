@@ -421,6 +421,94 @@ img {
   object-position: 50% 55% !important;
 }
 </style>
+
+<style id="sports-and-ipad-alignment-20261021">
+/* Keep romanized name together on its own line for tablet and mobile. */
+#about-identity-name .about-name-break { display: none; }
+#about-identity-name .about-name-en {
+  display: inline-block;
+  white-space: nowrap !important;
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+}
+@media (max-width: 1600px) {
+  #about-identity-name .about-name-break { display: block !important; }
+  #about-identity-name .about-name-en {
+    display: inline-block !important;
+    margin-top: .2rem;
+  }
+}
+/* Sports: align each photograph with its own caption, without cutting images. */
+#sports-photo-gallery.sports-uniform-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  column-gap: clamp(10px, 2.5vw, 28px) !important;
+  row-gap: 24px !important;
+  align-items: start !important;
+  justify-items: stretch !important;
+}
+#sports-photo-gallery .sports-uniform-item:not(.sports-photo-group) {
+  display: flex !important;
+  flex-direction: column !important;
+  min-width: 0 !important;
+  align-items: center !important;
+  margin: 0 !important;
+}
+#sports-photo-gallery .sports-uniform-item:not(.sports-photo-group) .sports-collage-photo {
+  display: block !important;
+  width: 100% !important;
+  height: clamp(230px, 30vw, 390px) !important;
+  max-height: none !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+#sports-photo-gallery .sports-uniform-item figcaption {
+  display: block !important;
+  width: 100% !important;
+  text-align: center !important;
+  margin: 10px 0 0 !important;
+  line-height: 1.5 !important;
+  font-size: clamp(11px, 1.15vw, 14px) !important;
+  overflow-wrap: anywhere;
+}
+#sports-photo-gallery .sports-photo-group {
+  grid-column: 1 / -1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-self: center !important;
+  width: min(100%, 470px) !important;
+}
+#sports-photo-gallery .sports-photo-group .sports-collage-photo {
+  display: block !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: 310px !important;
+  object-fit: contain !important;
+  object-position: center center !important;
+}
+@media (max-width: 700px) {
+  #sports-photo-gallery.sports-uniform-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+    column-gap: 8px !important;
+    row-gap: 20px !important;
+  }
+  #sports-photo-gallery .sports-uniform-item:not(.sports-photo-group) .sports-collage-photo {
+    height: clamp(145px, 44vw, 240px) !important;
+  }
+  #sports-photo-gallery .sports-uniform-item figcaption {
+    margin-top: 7px !important;
+    font-size: clamp(10px, 2.5vw, 12px) !important;
+    line-height: 1.45 !important;
+  }
+  #sports-photo-gallery .sports-photo-group {
+    width: min(90%, 370px) !important;
+  }
+  #sports-photo-gallery .sports-photo-group .sports-collage-photo {
+    max-height: 235px !important;
+  }
+}
+</style>
 </head>
 <body class="min-h-screen font-sans relative selection:bg-white selection:text-obsidian">
 <!-- ========================================================================= -->
@@ -621,7 +709,7 @@ img {
 </div>
 </div>
 <div class="w-full max-w-[280px] p-5 border border-white/15 bg-obsidian/55 backdrop-blur-md rounded-sm space-y-3">
-<h2 id="about-identity-name" class="font-display text-2xl text-white" data-i18n="extra.48"><span class="about-name-zh">羅鈺欣</span> <span class="about-name-en">Lo Yu Hsin</span></h2>
+<h2 id="about-identity-name" class="font-display text-2xl text-white" data-i18n="extra.48"><span class="about-name-zh">羅鈺欣</span><br class="about-name-break" aria-hidden="true"/><span class="about-name-en">Lo Yu Hsin</span></h2>
 <div class="text-xs text-white/80 space-y-1.5 pt-2 border-t border-white/15 font-light">
 <p><span class="text-white/45 font-mono uppercase mr-2">LOC</span><span data-i18n="extra.kaohsiung">台灣高雄市</span></p>
 <p><span class="text-white/45 font-mono uppercase mr-2">TEL</span>0961-110-035</p>
@@ -1392,7 +1480,7 @@ i18n.zh["extra.author"]="羅鈺欣";
       if (aboutNameEl) {
         aboutNameEl.innerHTML = lang === 'en'
           ? '<span class="about-name-en">Lo Yu Hsin</span>'
-          : '<span class="about-name-zh">羅鈺欣</span> <span class="about-name-en">Lo Yu Hsin</span>';
+          : '<span class="about-name-zh">羅鈺欣</span><br class="about-name-break" aria-hidden="true"/><span class="about-name-en">Lo Yu Hsin</span>';
       }
 
       renderDesignSlide();
